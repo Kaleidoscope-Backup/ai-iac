@@ -128,3 +128,68 @@ output "cloudwatch_log_group" {
   description = "CloudWatch log group for Bedrock"
   value       = aws_cloudwatch_log_group.bedrock_logs.name
 }
+
+
+# WARNING: These are test secrets for demonstration purposes only
+
+# Test AWS credentials (dummy values for testing)
+variable "aws_access_key" {
+  description = "AWS access key for testing"
+  type        = string
+  default     = "AKIAIOSFODNN7EXAMPLE"  # Test AWS access key
+}
+
+variable "aws_secret_key" {
+  description = "AWS secret key for testing"
+  type        = string
+  default     = "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"  # Test AWS secret
+}
+
+# Test API keys
+variable "api_configurations" {
+  description = "API configuration with test keys"
+  type        = map(string)
+  default = {
+    openai_api_key     = "sk-1234567890abcdef1234567890abcdef"
+    github_token       = "ghp_1234567890abcdef1234567890abcdef12345678"
+    slack_bot_token    = "xoxb-1234567890-1234567890123-abcdefghijklmnopqrstuvwx"
+    atlassian_token    = "ATATT3xFfGF0T4JDxOJA4kJmxD6k1Yz6d"
+    stripe_secret      = "sk_test_1234567890abcdef"
+  }
+}
+
+# Test database credentials
+variable "database_config" {
+  description = "Database configuration with test credentials"
+  type        = object({
+    host     = string
+    username = string
+    password = string
+  })
+  default = {
+    host     = "localhost"
+    username = "admin"
+    password = "SuperSecretPassword123!"
+  }
+}
+
+# Test JWT and encryption keys
+locals {
+  jwt_secret = "your-super-secret-jwt-key-here-with-256-bits"
+  api_key    = "abc123def456ghi789jkl012mno345pqr678stu901vwx234yz"
+}
+
+# Test PII data (for demonstration)
+variable "contact_info" {
+  description = "Contact information with PII"
+  type        = object({
+    email = string
+    phone = string
+    ssn   = string
+  })
+  default = {
+    email = "admin@company.com"
+    phone = "555-123-4567"
+    ssn   = "123-45-6789"
+  }
+}
